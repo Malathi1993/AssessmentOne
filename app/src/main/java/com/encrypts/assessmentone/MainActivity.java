@@ -1,29 +1,47 @@
 package com.encrypts.assessmentone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
    CalendarView simpleCalendarView;
-    private Object CalendarView;
-
+   TextView date,day,year;
+   Button showselecteddate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CalendarView = (CalendarView) findViewById(R.id.calendarView);
+        date = (TextView) findViewById(R.id.date);
+        day = (TextView) findViewById(R.id.day);
+        year = (TextView) findViewById(R.id.year);
+        final Calendar calendar = Calendar.getInstance();
+        //simpleCalendarView = (CalendarView) findViewById(R.id.calendarView);
         simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                //public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // display the selected date by using a toast
-                Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this.getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+                calendar.set(year, month, dayOfMonth);
             }
         });
 
+        showselecteddate.setOnClickListener(view);
+        {
+
+            date.setText(String.valueOf(calendar.get(Calendar.DATE)));
+            date.setText(String.valueOf(calendar.get(Calendar.MONTH)));
+            date.setText(String.valueOf(calendar.get(Calendar.YEAR)));
+        }
     }
 
 }
