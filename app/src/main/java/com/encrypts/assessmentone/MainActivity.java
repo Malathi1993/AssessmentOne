@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         date = (TextView) findViewById(R.id.date);
         day = (TextView) findViewById(R.id.day);
         year = (TextView) findViewById(R.id.year);
+        showselecteddate = (Button)findViewById(R.id.button);
         final Calendar calendar = Calendar.getInstance();
         //simpleCalendarView = (CalendarView) findViewById(R.id.calendarView);
         simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -35,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        showselecteddate.setOnClickListener(view);
+        showselecteddate.setOnClickListener((view ));
         {
 
             date.setText(String.valueOf(calendar.get(Calendar.DATE)));
-            date.setText(String.valueOf(calendar.get(Calendar.MONTH)));
+            date.setText(String.valueOf(calendar.get(Calendar.DAY_OF_WEEK)));
             date.setText(String.valueOf(calendar.get(Calendar.YEAR)));
         }
     }
